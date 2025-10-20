@@ -127,6 +127,39 @@ class UIBranding
         if (isset($data['title'])) {
             $brandManager->changeTitle($data["title"]);
         }
+
+        // Save modern UI settings
+        $modernUISettings = [
+            'theme' => $data['theme'] ?? 'default',
+            'layout' => $data['layout'] ?? 'default', 
+            'animation' => $data['animation'] ?? 'fade',
+            'enable_modern_inputs' => $data['enable_modern_inputs'] ?? '0',
+            'enable_floating_labels' => $data['enable_floating_labels'] ?? '0',
+            'enable_modern_buttons' => $data['enable_modern_buttons'] ?? '0',
+            'enable_logo_effects' => $data['enable_logo_effects'] ?? '0',
+            'enable_particles' => $data['enable_particles'] ?? '0',
+            'primary_color' => $data['primary_color'] ?? '#2563eb',
+            'secondary_color' => $data['secondary_color'] ?? '#1e40af',
+            'accent_color' => $data['accent_color'] ?? '#3b82f6',
+            'border_radius' => $data['border_radius'] ?? '16',
+            'blur_intensity' => $data['blur_intensity'] ?? '20',
+            'video_background_url' => $data['video_background_url'] ?? '',
+            'attribution_text' => $data['attribution_text'] ?? '',
+            
+            // Interactive panel
+            'panel_enabled' => $data['panel_enabled'] ?? '1',
+            'panel_title' => $data['panel_title'] ?? 'Bem-vindo!',
+            'panel_message' => $data['panel_message'] ?? '',
+            'panel_show_notifications' => $data['panel_show_notifications'] ?? '1',
+            'panel_show_events' => $data['panel_show_events'] ?? '1',
+            'panel_show_countdown' => $data['panel_show_countdown'] ?? '0',
+            'panel_countdown_date' => $data['panel_countdown_date'] ?? '',
+            'panel_countdown_text' => $data['panel_countdown_text'] ?? '',
+            'panel_notifications' => $data['panel_notifications'] ?? '',
+            'panel_events' => $data['panel_events'] ?? ''
+        ];
+
+        $brandManager->saveModernUISettings($modernUISettings);
     }
 
     /**
@@ -135,6 +168,8 @@ class UIBranding
     public function display(): bool
     {
         global $CFG_GLPI;
+        $modernSettings = BrandManager::getModernUISettings();
+        
         TemplateRenderer::getInstance()->display('@mod/uibranding.html.twig', [
             "url" => $CFG_GLPI['root_doc'] . "/plugins/mod/front/uibranding.php",
             "show_background" => BrandManager::isLoginPageModified(),
@@ -143,6 +178,40 @@ class UIBranding
                 || BrandManager::isActiveResourceModified("logo_l"),
             "show_custom_favicon" => BrandManager::isActiveResourceModified("favicon"),
             "title" => BrandManager::getCurrentTitle(),
+            
+            // Modern UI settings
+            "available_themes" => BrandManager::AVAILABLE_THEMES,
+            "available_layouts" => BrandManager::AVAILABLE_LAYOUTS,
+            "available_animations" => BrandManager::AVAILABLE_ANIMATIONS,
+            
+            // Current settings
+            "theme" => $modernSettings['theme'],
+            "layout" => $modernSettings['layout'],
+            "animation" => $modernSettings['animation'],
+            "enable_modern_inputs" => $modernSettings['enable_modern_inputs'],
+            "enable_floating_labels" => $modernSettings['enable_floating_labels'],
+            "enable_modern_buttons" => $modernSettings['enable_modern_buttons'],
+            "enable_logo_effects" => $modernSettings['enable_logo_effects'],
+            "enable_particles" => $modernSettings['enable_particles'],
+            "primary_color" => $modernSettings['primary_color'],
+            "secondary_color" => $modernSettings['secondary_color'],
+            "accent_color" => $modernSettings['accent_color'],
+            "border_radius" => $modernSettings['border_radius'],
+            "blur_intensity" => $modernSettings['blur_intensity'],
+            "video_background_url" => $modernSettings['video_background_url'],
+            "attribution_text" => $modernSettings['attribution_text'],
+            
+            // Interactive panel settings
+            "panel_enabled" => $modernSettings['panel_enabled'],
+            "panel_title" => $modernSettings['panel_title'],
+            "panel_message" => $modernSettings['panel_message'],
+            "panel_show_notifications" => $modernSettings['panel_show_notifications'],
+            "panel_show_events" => $modernSettings['panel_show_events'],
+            "panel_show_countdown" => $modernSettings['panel_show_countdown'],
+            "panel_countdown_date" => $modernSettings['panel_countdown_date'],
+            "panel_countdown_text" => $modernSettings['panel_countdown_text'],
+            "panel_notifications" => $modernSettings['panel_notifications'],
+            "panel_events" => $modernSettings['panel_events'],
         ]);
         return true;
     }

@@ -358,17 +358,13 @@ class BrandManager
         if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
             return;
         }
-        $ini = parse_ini_file(self::FILES_DIR . "/modifiers.ini");
-        if ($ini === false) {
+        $ini = self::readIniFile();
+        if (empty($ini)) {
             /** @noinspection PhpArrayIndexImmediatelyRewrittenInspection */
             $ini = ["title" => "GLPI", "login" => "false"];
         }
         $ini["title"] = htmlescape($title);
-        $iniString = [];
-        foreach ($ini as $key => $value) {
-            $iniString[] = "$key=$value";
-        }
-        file_put_contents(self::FILES_DIR . "/modifiers.ini", implode("\n", $iniString));
+        self::writeIniFile($ini);
     }
 
     /**
@@ -384,8 +380,8 @@ class BrandManager
         if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
             return "GLPI";
         }
-        $ini = parse_ini_file(self::FILES_DIR . "/modifiers.ini");
-        if ($ini === false) return false;
+        $ini = self::readIniFile();
+        if (empty($ini)) return "GLPI";
         if (!isset($ini["title"])) {
             self::initModifiers();
             return "GLPI";
@@ -403,8 +399,8 @@ class BrandManager
         if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
             return false;
         }
-        $ini = parse_ini_file(self::FILES_DIR . "/modifiers.ini");
-        if ($ini === false) return false;
+        $ini = self::readIniFile();
+        if (empty($ini)) return false;
         if (!isset($ini["login"])) {
             self::initModifiers();
             return false;
@@ -424,17 +420,13 @@ class BrandManager
         if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
             return;
         }
-        $ini = parse_ini_file(self::FILES_DIR . "/modifiers.ini");
-        if ($ini === false) {
+        $ini = self::readIniFile();
+        if (empty($ini)) {
             /** @noinspection PhpArrayIndexImmediatelyRewrittenInspection */
             $ini = ["title" => "GLPI", "login" => "1"];
         }
         $ini["login"] = "1";
-        $iniString = [];
-        foreach ($ini as $key => $value) {
-            $iniString[] = "$key=$value";
-        }
-        file_put_contents(self::FILES_DIR . "/modifiers.ini", implode("\n", $iniString));
+        self::writeIniFile($ini);
     }
 
     /**
@@ -447,17 +439,351 @@ class BrandManager
         if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
             return;
         }
-        $ini = parse_ini_file(self::FILES_DIR . "/modifiers.ini");
-        if ($ini === false) {
+        $ini = self::readIniFile();
+        if (empty($ini)) {
             /** @noinspection PhpArrayIndexImmediatelyRewrittenInspection */
             $ini = ["title" => "GLPI", "login" => "0"];
         }
         $ini["login"] = "0";
-        $iniString = [];
-        foreach ($ini as $key => $value) {
-            $iniString[] = "$key=$value";
+        self::writeIniFile($ini);
+    }
+
+    // ==== MODERN UI ENHANCEMENTS ====
+
+    /**
+     * Available themes for the modern login interface
+     */
+    public const AVAILABLE_THEMES = [
+        'default' => 'Default Theme',
+        'glass' => 'Glassmorphism',
+        'dark' => 'Dark Elegant',
+        'gradient' => 'Gradient Modern',
+        'neon' => 'Neon Cyber'
+    ];
+
+    /**
+     * Available layouts for the login page
+     */
+    public const AVAILABLE_LAYOUTS = [
+        'default' => 'Default Layout',
+        'split-left' => 'Split Screen - Form on Left',
+        'split-right' => 'Split Screen - Form on Right'
+    ];
+
+    /**
+     * Available animation styles
+     */
+    public const AVAILABLE_ANIMATIONS = [
+        'none' => 'No Animation',
+        'fade' => 'Fade In',
+        'slide' => 'Slide Up',
+        'scale' => 'Scale In'
+    ];
+
+    /**
+     * Saves modern UI settings to the configuration file
+     *
+     * @param array $settings Array containing theme, layout, colors, etc.
+     * @return void
+     */
+    public function saveModernUISettings(array $settings): void
+    {
+        if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
+            return;
         }
-        file_put_contents(self::FILES_DIR . "/modifiers.ini", implode("\n", $iniString));
+        
+        $ini = self::readIniFile();
+        if (empty($ini)) {
+            $ini = ["title" => "GLPI", "login" => "false"];
+        }
+
+        // Save modern UI settings
+        $modernSettings = [
+            'theme' => $settings['theme'] ?? 'default',
+            'layout' => $settings['layout'] ?? 'default',
+            'animation' => $settings['animation'] ?? 'fade',
+            'enable_modern_inputs' => $settings['enable_modern_inputs'] ?? '0',
+            'enable_floating_labels' => $settings['enable_floating_labels'] ?? '0',
+            'enable_modern_buttons' => $settings['enable_modern_buttons'] ?? '0',
+            'enable_logo_effects' => $settings['enable_logo_effects'] ?? '0',
+            'enable_particles' => $settings['enable_particles'] ?? '0',
+            'primary_color' => $settings['primary_color'] ?? '#2563eb',
+            'secondary_color' => $settings['secondary_color'] ?? '#1e40af',
+            'accent_color' => $settings['accent_color'] ?? '#3b82f6',
+            'border_radius' => $settings['border_radius'] ?? '16',
+            'blur_intensity' => $settings['blur_intensity'] ?? '20',
+            'video_background_url' => $settings['video_background_url'] ?? '',
+            'attribution_text' => $settings['attribution_text'] ?? '',
+            
+            // Interactive panel settings
+            'panel_enabled' => $settings['panel_enabled'] ?? '1',
+            'panel_title' => $settings['panel_title'] ?? 'Bem-vindo!',
+            'panel_message' => $settings['panel_message'] ?? 'Configure mensagens, eventos e notificações no painel administrativo.',
+            'panel_show_notifications' => $settings['panel_show_notifications'] ?? '1',
+            'panel_show_events' => $settings['panel_show_events'] ?? '1',
+            'panel_show_countdown' => $settings['panel_show_countdown'] ?? '0',
+            'panel_countdown_date' => $settings['panel_countdown_date'] ?? '',
+            'panel_countdown_text' => $settings['panel_countdown_text'] ?? '',
+            'panel_notifications' => $settings['panel_notifications'] ?? '',
+            'panel_events' => $settings['panel_events'] ?? ''
+        ];
+
+        // Merge with existing settings
+        $ini = array_merge($ini, $modernSettings);
+
+        // Write back to file with proper escaping
+        self::writeIniFile($ini);
+    }
+
+    /**
+     * Gets current modern UI settings
+     *
+     * @return array Current settings array
+     */
+    public static function getModernUISettings(): array
+    {
+        if (!file_exists(self::FILES_DIR . "/modifiers.ini") && !self::initModifiers()) {
+            return self::getDefaultModernUISettings();
+        }
+        
+        // Use readIniFile which properly handles escaped newlines
+        $ini = self::readIniFile();
+        if (empty($ini)) {
+            return self::getDefaultModernUISettings();
+        }
+
+        return [
+            'theme' => $ini['theme'] ?? 'default',
+            'layout' => $ini['layout'] ?? 'default',
+            'animation' => $ini['animation'] ?? 'fade',
+            'enable_modern_inputs' => $ini['enable_modern_inputs'] ?? '0',
+            'enable_floating_labels' => $ini['enable_floating_labels'] ?? '0',
+            'enable_modern_buttons' => $ini['enable_modern_buttons'] ?? '0',
+            'enable_logo_effects' => $ini['enable_logo_effects'] ?? '0',
+            'enable_particles' => $ini['enable_particles'] ?? '0',
+            'primary_color' => $ini['primary_color'] ?? '#2563eb',
+            'secondary_color' => $ini['secondary_color'] ?? '#1e40af',
+            'accent_color' => $ini['accent_color'] ?? '#3b82f6',
+            'border_radius' => $ini['border_radius'] ?? '16',
+            'blur_intensity' => $ini['blur_intensity'] ?? '20',
+            'video_background_url' => $ini['video_background_url'] ?? '',
+            'attribution_text' => $ini['attribution_text'] ?? '',
+            
+            // Interactive panel
+            'panel_enabled' => $ini['panel_enabled'] ?? '1',
+            'panel_title' => $ini['panel_title'] ?? 'Bem-vindo!',
+            'panel_message' => $ini['panel_message'] ?? 'Configure mensagens, eventos e notificações no painel administrativo.',
+            'panel_show_notifications' => $ini['panel_show_notifications'] ?? '1',
+            'panel_show_events' => $ini['panel_show_events'] ?? '1',
+            'panel_show_countdown' => $ini['panel_show_countdown'] ?? '0',
+            'panel_countdown_date' => $ini['panel_countdown_date'] ?? '',
+            'panel_countdown_text' => $ini['panel_countdown_text'] ?? '',
+            'panel_notifications' => $ini['panel_notifications'] ?? '',
+            'panel_events' => $ini['panel_events'] ?? ''
+        ];
+    }
+    
+    /**
+     * Safely parse INI file even with special characters
+     *
+     * @param string $filePath Path to INI file
+     * @return array Parsed settings
+     */
+    private static function parseIniFileSafe(string $filePath): array
+    {
+        $result = [];
+        if (!file_exists($filePath)) {
+            return $result;
+        }
+        
+        $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (empty($line) || $line[0] === ';' || $line[0] === '#') {
+                continue;
+            }
+            
+            $parts = explode('=', $line, 2);
+            if (count($parts) === 2) {
+                $key = trim($parts[0]);
+                $value = trim($parts[1]);
+                
+                // Remove quotes if present
+                if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') ||
+                    (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
+                    $value = substr($value, 1, -1);
+                }
+                
+                // Unescape quotes
+                $value = str_replace('\"', '"', $value);
+                
+                // Convert literal \n (two characters: backslash + n) back to actual newlines
+                $value = str_replace('\\n', "\n", $value);
+                
+                $result[$key] = $value;
+            }
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Read INI file with fallback to safe parser
+     *
+     * @return array INI content as array
+     */
+    private static function readIniFile(): array
+    {
+        if (!file_exists(self::FILES_DIR . "/modifiers.ini")) {
+            return [];
+        }
+        
+        // Always use safe parser to properly handle escaped newlines
+        $ini = self::parseIniFileSafe(self::FILES_DIR . "/modifiers.ini");
+        
+        return $ini;
+    }
+    
+    /**
+     * Write array to INI file with proper escaping
+     *
+     * @param array $data Data to write
+     * @return bool Success
+     */
+    private static function writeIniFile(array $data): bool
+    {
+        $iniString = [];
+        foreach ($data as $key => $value) {
+            // Preserve newlines but escape them for INI format
+            $escapedValue = str_replace(['"', "\r"], ['\"', ''], $value);
+            // Replace newlines with literal \n for INI storage
+            $escapedValue = str_replace("\n", "\\n", $escapedValue);
+            
+            // Always wrap multi-line content or special characters in quotes
+            if (strpos($escapedValue, "\\n") !== false || preg_match('/[!@#$%^&*()+=\[\]{};:,.<>?\/\\\\|` ]/', $value)) {
+                $iniString[] = $key . '="' . $escapedValue . '"';
+            } else {
+                $iniString[] = $key . '=' . $escapedValue;
+            }
+        }
+        return file_put_contents(self::FILES_DIR . "/modifiers.ini", implode("\n", $iniString)) !== false;
+    }
+
+    /**
+     * Gets default modern UI settings
+     *
+     * @return array Default settings
+     */
+    public static function getDefaultModernUISettings(): array
+    {
+        return [
+            'theme' => 'default',
+            'layout' => 'default',
+            'animation' => 'fade',
+            'enable_modern_inputs' => '0',
+            'enable_floating_labels' => '0',
+            'enable_modern_buttons' => '0',
+            'enable_logo_effects' => '0',
+            'enable_particles' => '0',
+            'primary_color' => '#2563eb',
+            'secondary_color' => '#1e40af',
+            'accent_color' => '#3b82f6',
+            'border_radius' => '16',
+            'blur_intensity' => '20',
+            'video_background_url' => '',
+            'attribution_text' => '',
+            
+            // Interactive panel defaults
+            'panel_enabled' => '1',
+            'panel_title' => 'Bem-vindo!',
+            'panel_message' => 'Configure mensagens, eventos e notificações no painel administrativo.',
+            'panel_show_notifications' => '1',
+            'panel_show_events' => '1',
+            'panel_show_countdown' => '0',
+            'panel_countdown_date' => '',
+            'panel_countdown_text' => '',
+            'panel_notifications' => '',
+            'panel_events' => ''
+        ];
+    }
+
+    /**
+     * Generates CSS variables for dynamic styling
+     *
+     * @return string CSS variables string
+     */
+    public static function generateCSSVariables(): string
+    {
+        $settings = self::getModernUISettings();
+        
+        return ":root {\n" .
+            "    --mod-primary-color: " . $settings['primary_color'] . ";\n" .
+            "    --mod-secondary-color: " . $settings['secondary_color'] . ";\n" .
+            "    --mod-accent-color: " . $settings['accent_color'] . ";\n" .
+            "    --mod-border-radius: " . $settings['border_radius'] . "px;\n" .
+            "    --mod-blur-intensity: " . $settings['blur_intensity'] . "px;\n" .
+            "}\n";
+    }
+
+    /**
+     * Generates body classes based on current settings
+     *
+     * @return string Space-separated CSS classes
+     */
+    public static function generateBodyClasses(): string
+    {
+        $settings = self::getModernUISettings();
+        $classes = [];
+
+        // Theme class
+        if ($settings['theme'] !== 'default') {
+            $classes[] = 'mod-theme-' . $settings['theme'];
+        }
+
+        // Layout class
+        if ($settings['layout'] !== 'default') {
+            $classes[] = 'mod-layout-' . $settings['layout'];
+        }
+
+        // Feature classes
+        if ($settings['enable_modern_inputs'] === '1') {
+            $classes[] = 'mod-modern-inputs';
+        }
+        if ($settings['enable_floating_labels'] === '1') {
+            $classes[] = 'mod-floating-labels';
+        }
+        if ($settings['enable_modern_buttons'] === '1') {
+            $classes[] = 'mod-modern-buttons';
+        }
+        if ($settings['enable_logo_effects'] === '1') {
+            $classes[] = 'mod-logo-enhanced';
+        }
+        if ($settings['enable_particles'] === '1') {
+            $classes[] = 'mod-particles-bg';
+        }
+        if ($settings['animation'] !== 'none') {
+            $classes[] = 'mod-animated';
+        }
+
+        return implode(' ', $classes);
+    }
+
+    /**
+     * Checks if modern UI features are enabled
+     *
+     * @return bool True if any modern feature is enabled
+     */
+    public static function isModernUIEnabled(): bool
+    {
+        $settings = self::getModernUISettings();
+        
+        return $settings['theme'] !== 'default' ||
+               $settings['layout'] !== 'default' ||
+               $settings['enable_modern_inputs'] === '1' ||
+               $settings['enable_floating_labels'] === '1' ||
+               $settings['enable_modern_buttons'] === '1' ||
+               $settings['enable_logo_effects'] === '1' ||
+               $settings['enable_particles'] === '1';
     }
 
 }

@@ -28,10 +28,24 @@
  * -------------------------------------------------------------------------
  */
 
+// Define GLPI_ROOT if not already defined
+if (!defined('GLPI_ROOT')) {
+    define('GLPI_ROOT', dirname(dirname(dirname(dirname(__FILE__)))));
+}
+
+// Include GLPI
+if (file_exists(GLPI_ROOT . "/inc/includes.php")) {
+    include_once(GLPI_ROOT . "/inc/includes.php");
+}
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
+if (!defined('GLPI_PLUGIN_DOC_DIR')) {
+    define('GLPI_PLUGIN_DOC_DIR', GLPI_ROOT . '/files/_plugins');
+}
 
 $file = GLPI_PLUGIN_DOC_DIR . "/mod/images/background.jpg";
 

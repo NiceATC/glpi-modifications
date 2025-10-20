@@ -1,0 +1,461 @@
+/**
+ * MOD Plugin - Simplified Split Layout Styles
+ * Two panels: Form (left/right) + Decorative panel
+ */
+
+/* ============================================================
+   BACKGROUND - Full page cover (Image or Video)
+   Works on all login pages: /, /index.php, /public/
+   ============================================================ */
+
+body.mod-layout-split-left,
+body.mod-layout-split-right,
+body.welcome-anonymous.mod-layout-split-left,
+body.welcome-anonymous.mod-layout-split-right {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    background: url(../background.php) no-repeat fixed center !important;
+    background-size: cover !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+/* Video background support */
+body.mod-layout-split-left .page-anonymous::before,
+body.mod-layout-split-right .page-anonymous::before {
+    content: '' !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Video element styling */
+body.mod-layout-split-left video.mod-background-video,
+body.mod-layout-split-right video.mod-background-video {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: -2 !important;
+    object-fit: cover !important;
+}
+
+/* Remove GLPI default background from page-anonymous */
+body.mod-layout-split-left .page-anonymous,
+body.mod-layout-split-right .page-anonymous {
+    background: none !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ============================================================
+   MAIN CONTAINER - Floating box with two panels
+   ============================================================ */
+
+body.mod-layout-split-left .container-tight,
+body.mod-layout-split-right .container-tight {
+    max-width: 100% !important;
+    width: 98% !important;
+    max-width: 1800px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative !important;
+}
+
+/* The main card becomes our floating container */
+body.mod-layout-split-left .main-content-card,
+body.mod-layout-split-right .main-content-card {
+    display: flex !important;
+    flex-direction: row !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    min-height: 500px !important;
+    max-height: 85vh !important;
+}
+
+/* Card header - Show with logo */
+body.mod-layout-split-left .main-content-card .card-header,
+body.mod-layout-split-right .main-content-card .card-header {
+    background: transparent !important;
+    border: none !important;
+    padding: 0px 0px 0px !important;
+    text-align: center !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+body.mod-layout-split-left .main-content-card .card-body,
+body.mod-layout-split-right .main-content-card .card-body {
+    padding: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    margin: 0 !important;
+}
+
+/* ============================================================
+   FORM CONTAINER - Login form side (400px fixed)
+   ============================================================ */
+
+body.mod-layout-split-left .main-content-card .card-body form,
+body.mod-layout-split-right .main-content-card .card-body form {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* The actual form column */
+body.mod-layout-split-left .main-content-card .card-body form > .row,
+body.mod-layout-split-right .main-content-card .card-body form > .row {
+    width: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+/* Form column (left side by default) */
+body.mod-layout-split-left .main-content-card .card-body .col-md-5,
+body.mod-layout-split-right .main-content-card .card-body .col-md-5 {
+    flex: 0 0 450px !important;
+    max-width: 450px !important;
+    width: 450px !important;
+    padding: 50px 40px !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    order: 1 !important;
+    overflow-y: auto !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Split Right - Form on right side */
+body.mod-layout-split-right .main-content-card .card-body .col-md-5 {
+    order: 2 !important;
+    border-right: none !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================================
+   DECORATIVE PANEL - Larger panel with gradient
+   ============================================================ */
+
+/* The col-auto becomes our decorative panel */
+body.mod-layout-split-left .main-content-card .card-body .col-auto,
+body.mod-layout-split-right .main-content-card .card-body .col-auto {
+    flex: 1 !important;
+    min-width: 500px !important;
+    max-width: none !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    order: 2 !important;
+}
+
+/* Split Right - Panel on left */
+body.mod-layout-split-right .main-content-card .card-body .col-auto {
+    order: 1 !important;
+}
+
+/* Remove any content inside col-auto (styles/scripts) */
+body.mod-layout-split-left .main-content-card .card-body .col-auto > *,
+body.mod-layout-split-right .main-content-card .card-body .col-auto > * {
+    display: none !important;
+}
+
+/* Add decorative pattern */
+body.mod-layout-split-left .main-content-card .card-body .col-auto::before,
+body.mod-layout-split-right .main-content-card .card-body .col-auto::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: none !important;
+    pointer-events: none !important;
+}
+
+/* ============================================================
+   LOGO inside card-header
+   ============================================================ */
+
+body.mod-layout-split-left .col-md-5 .card-header .glpi-logo,
+body.mod-layout-split-right .col-md-5 .card-header .glpi-logo {
+    display: block !important;
+    margin: 0 auto 20px auto !important;
+    max-width: 180px !important;
+    height: auto !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+body.mod-layout-split-left .card-header .glpi-logo,
+body.mod-layout-split-right .card-header .glpi-logo {
+    display: block !important;
+    margin: 0 auto 20px auto !important;
+    max-width: 180px !important;
+    height: auto !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+body.mod-layout-split-left .main-content-card .card-header .glpi-logo,
+body.mod-layout-split-right .main-content-card .card-header .glpi-logo {
+    display: block !important;
+    margin: 0 auto 20px auto !important;
+    max-width: 180px !important;
+    height: auto !important;
+}
+
+/* Hide ALL text-center containers in card-body */
+body.mod-layout-split-left .text-center,
+body.mod-layout-split-right .text-center {
+    display: none !important;
+}
+
+/* Hide logo from form body (only show in header) */
+body.mod-layout-split-left .card-body .text-center .glpi-logo,
+body.mod-layout-split-right .card-body .text-center .glpi-logo {
+    display: none !important;
+}
+
+body.mod-layout-split-left .card-body .text-center:first-of-type,
+body.mod-layout-split-right .card-body .text-center:first-of-type {
+    display: none !important;
+}
+
+/* ============================================================
+   FORM ELEMENTS - Clean modern styling
+   ============================================================ */
+
+body.mod-layout-split-left .main-content-card input[type="text"],
+body.mod-layout-split-left .main-content-card input[type="password"],
+body.mod-layout-split-left .main-content-card input[type="email"],
+body.mod-layout-split-right .main-content-card input[type="text"],
+body.mod-layout-split-right .main-content-card input[type="password"],
+body.mod-layout-split-right .main-content-card input[type="email"] {
+    width: 100% !important;
+    padding: 12px 15px !important;
+    margin-bottom: 5px !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    background: #fff !important;
+}
+
+body.mod-layout-split-left .main-content-card input:focus,
+body.mod-layout-split-right .main-content-card input:focus {
+    border-color: var(--mod-primary-color, #667eea) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Login button */
+body.mod-layout-split-left .main-content-card button[type="submit"],
+body.mod-layout-split-left .main-content-card input[type="submit"],
+body.mod-layout-split-right .main-content-card button[type="submit"],
+body.mod-layout-split-right .main-content-card input[type="submit"] {
+    width: 100% !important;
+    padding: 14px 20px !important;
+    margin-top: 10px !important;
+    background: var(--mod-primary-color, #2563eb) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+body.mod-layout-split-left .main-content-card button[type="submit"]:hover,
+body.mod-layout-split-right .main-content-card button[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4) !important;
+    filter: brightness(1.1) !important;
+}
+
+/* Title */
+body.mod-layout-split-left .main-content-card h2,
+body.mod-layout-split-right .main-content-card h2 {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin-bottom: 0px !important;
+    text-align: center !important;
+}
+
+/* Labels */
+body.mod-layout-split-left .main-content-card label,
+body.mod-layout-split-right .main-content-card label {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #555 !important;
+    margin-bottom: 5px !important;
+    display: block !important;
+}
+
+/* Checkbox */
+body.mod-layout-split-left .main-content-card .form-check,
+body.mod-layout-split-right .main-content-card .form-check {
+    margin-bottom: 10px !important;
+}
+
+/* Links */
+body.mod-layout-split-left .main-content-card a,
+body.mod-layout-split-right .main-content-card a {
+    color: var(--mod-primary-color, #667eea) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+body.mod-layout-split-left .main-content-card a:hover,
+body.mod-layout-split-right .main-content-card a:hover {
+    color: var(--mod-secondary-color, #764ba2) !important;
+    text-decoration: underline !important;
+}
+
+/* ============================================================
+   FOOTER - Position below floating box
+   ============================================================ */
+
+body.mod-layout-split-left .text-center.text-muted.mt-3,
+body.mod-layout-split-right .text-center.text-muted.mt-3 {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    margin-top: 20px !important;
+}
+
+body.mod-layout-split-left .text-center.text-muted.mt-3 a,
+body.mod-layout-split-right .text-center.text-muted.mt-3 a {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ============================================================
+   RESPONSIVE - Mobile & Tablet
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    body.mod-layout-split-left .main-content-card,
+    body.mod-layout-split-right .main-content-card {
+        flex-direction: column !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body,
+    body.mod-layout-split-right .main-content-card .card-body {
+        flex-direction: column !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body form,
+    body.mod-layout-split-right .main-content-card .card-body form {
+        flex-direction: column !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body form > .row,
+    body.mod-layout-split-right .main-content-card .card-body form > .row {
+        flex-direction: column !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body .col-md-5,
+    body.mod-layout-split-right .main-content-card .card-body .col-md-5 {
+        flex: 0 0 auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        order: 2 !important;
+        padding: 40px 30px !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body .col-auto,
+    body.mod-layout-split-right .main-content-card .card-body .col-auto {
+        flex: 0 0 150px !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        height: 150px !important;
+        order: 1 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body.mod-layout-split-left .container-tight,
+    body.mod-layout-split-right .container-tight {
+        width: 95% !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body .col-md-5,
+    body.mod-layout-split-right .main-content-card .card-body .col-md-5 {
+        padding: 30px 25px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    body.mod-layout-split-left .container-tight,
+    body.mod-layout-split-right .container-tight {
+        width: 100% !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card,
+    body.mod-layout-split-right .main-content-card {
+        border-radius: 0 !important;
+        min-height: 100vh !important;
+    }
+    
+    body.mod-layout-split-left .main-content-card .card-body .col-auto,
+    body.mod-layout-split-right .main-content-card .card-body .col-auto {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS - Smooth entrance
+   ============================================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+body.mod-layout-split-left .main-content-card,
+body.mod-layout-split-right .main-content-card {
+    animation: fadeIn 0.5s ease-out !important;
+}

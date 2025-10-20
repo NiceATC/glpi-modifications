@@ -1,243 +1,242 @@
-# GLPI Modern Login Designer translation template
+# Brazilian Portuguese translations for GLPI Modern Login Designer
 # Copyright (C) 2025 GLPI Modern Login Designer
 # This file is distributed under the same license as the plugin.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Luiz Penteado <luiz.penteado@example.com>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Modern Login Designer 11.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-20 00:00+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2025-10-20 00:00-0300\n"
+"Last-Translator: Luiz Penteado\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: setup.php:71
-msgid "Modern Login Designer"
-msgstr ""
-
-#: front/uibranding.php:51
-msgid "Please activate the plugin"
-msgstr ""
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/uibranding.html.twig
 msgid "UI Branding"
-msgstr ""
+msgstr "Personalização de Interface"
 
 #: templates/uibranding.html.twig
 msgid "Apply Modifications"
-msgstr ""
+msgstr "Aplicar Modificações"
 
 #: templates/uibranding.html.twig
 msgid "Page Title"
-msgstr ""
+msgstr "Título da Página"
 
 #: templates/uibranding.html.twig
 msgid "Show login background"
-msgstr ""
+msgstr "Exibir fundo do login"
 
 #: templates/uibranding.html.twig
 msgid "Show custom logos"
-msgstr ""
+msgstr "Exibir logos personalizadas"
 
 #: templates/uibranding.html.twig
 msgid "Show custom favicon"
-msgstr ""
+msgstr "Exibir favicon personalizado"
 
 #: templates/uibranding.html.twig
 msgid "Custom Images"
-msgstr ""
+msgstr "Imagens Personalizadas"
 
 #: templates/uibranding.html.twig
 msgid "Background (min. 1920x1080 - JPG)"
-msgstr ""
+msgstr "Fundo (mín. 1920x1080 - JPG)"
 
 #: templates/uibranding.html.twig
 msgid "Background"
-msgstr ""
+msgstr "Fundo"
 
 #: templates/uibranding.html.twig
 msgid "Small Logo (53x53 - PNG)"
-msgstr ""
+msgstr "Logo Pequena (53x53 - PNG)"
 
 #: templates/uibranding.html.twig
 msgid "Small Logo"
-msgstr ""
+msgstr "Logo Pequena"
 
 #: templates/uibranding.html.twig
 msgid "Medium Logo (100x55 - PNG)"
-msgstr ""
+msgstr "Logo Média (100x55 - PNG)"
 
 #: templates/uibranding.html.twig
 msgid "Medium Logo"
-msgstr ""
+msgstr "Logo Média"
 
 #: templates/uibranding.html.twig
 msgid "Large Logo (250x138 - PNG)"
-msgstr ""
+msgstr "Logo Grande (250x138 - PNG)"
 
 #: templates/uibranding.html.twig
 msgid "Large Logo"
-msgstr ""
+msgstr "Logo Grande"
 
 #: templates/uibranding.html.twig
 msgid "Favicon (16x16 - ICO)"
-msgstr ""
+msgstr "Favicon (16x16 - ICO)"
 
 #: templates/uibranding.html.twig
 msgid "Favicon"
-msgstr ""
+msgstr "Favicon"
 
 #: templates/uibranding.html.twig
 msgid "Basic Settings"
-msgstr ""
+msgstr "Configurações Básicas"
 
 #: templates/uibranding.html.twig
 msgid "Modern UI Settings"
-msgstr ""
+msgstr "Configurações de Interface Moderna"
 
 #: templates/uibranding.html.twig
 msgid "Login Theme"
-msgstr ""
+msgstr "Tema de Login"
 
 #: templates/uibranding.html.twig
 msgid "Layout Style"
-msgstr ""
+msgstr "Estilo de Layout"
 
 #: templates/uibranding.html.twig
 msgid "Animation Style"
-msgstr ""
+msgstr "Estilo de Animação"
 
 #: templates/uibranding.html.twig
 msgid "Enhanced Features"
-msgstr ""
+msgstr "Recursos Avançados"
 
 #: templates/uibranding.html.twig
 msgid "Modern Input Fields"
-msgstr ""
+msgstr "Campos de Entrada Modernos"
 
 #: templates/uibranding.html.twig
 msgid "Floating Labels"
-msgstr ""
+msgstr "Rótulos Flutuantes"
 
 #: templates/uibranding.html.twig
 msgid "Modern Buttons"
-msgstr ""
+msgstr "Botões Modernos"
 
 #: templates/uibranding.html.twig
 msgid "Logo Effects"
-msgstr ""
+msgstr "Efeitos na Logo"
 
 #: templates/uibranding.html.twig
 msgid "Particle Background"
-msgstr ""
+msgstr "Fundo com Partículas"
 
 #: templates/uibranding.html.twig
 msgid "Color Customization"
-msgstr ""
+msgstr "Personalização de Cores"
 
 #: templates/uibranding.html.twig
 msgid "Primary Color"
-msgstr ""
+msgstr "Cor Primária"
 
 #: templates/uibranding.html.twig
 msgid "Secondary Color"
-msgstr ""
+msgstr "Cor Secundária"
 
 #: templates/uibranding.html.twig
 msgid "Accent Color"
-msgstr ""
+msgstr "Cor de Destaque"
 
 #: templates/uibranding.html.twig
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Configurações Avançadas"
 
 #: templates/uibranding.html.twig
 msgid "Border Radius"
-msgstr ""
+msgstr "Raio da Borda"
 
 #: templates/uibranding.html.twig
 msgid "Blur Intensity"
-msgstr ""
+msgstr "Intensidade do Desfoque"
 
 #: templates/uibranding.html.twig
 msgid "Changes will be applied to the login page. You can preview the login page in a private/incognito browser window."
-msgstr ""
+msgstr "As alterações serão aplicadas na página de login. Você pode visualizar a página de login em uma janela anônima/privada do navegador."
+
+#: front/uibranding.php:51
+msgid "Please activate the plugin"
+msgstr "Por favor, ative o plugin"
+
+#: setup.php:71
+msgid "Modern Login Designer"
+msgstr "Designer de Login Moderno"
 
 #: templates/uibranding.html.twig
 msgid "Interactive Panel Settings"
-msgstr ""
+msgstr "Configurações do Painel Interativo"
 
 #: templates/uibranding.html.twig
 msgid "Panel Title"
-msgstr ""
+msgstr "Título do Painel"
 
 #: templates/uibranding.html.twig
 msgid "Panel Notifications"
-msgstr ""
+msgstr "Notificações do Painel"
 
 #: templates/uibranding.html.twig
 msgid "Panel Events"
-msgstr ""
+msgstr "Eventos do Painel"
 
 #: templates/uibranding.html.twig
 msgid "Enable Countdown"
-msgstr ""
+msgstr "Ativar Contagem Regressiva"
 
 #: templates/uibranding.html.twig
 msgid "Countdown Label"
-msgstr ""
+msgstr "Texto da Contagem"
 
 #: templates/uibranding.html.twig
 msgid "Countdown Date"
-msgstr ""
+msgstr "Data da Contagem"
 
 #: templates/uibranding.html.twig
 msgid "One notification per line"
-msgstr ""
+msgstr "Uma notificação por linha"
 
 #: templates/uibranding.html.twig
 msgid "One event per line. Format: Event Name | Event Date"
-msgstr ""
+msgstr "Um evento por linha. Formato: Nome do Evento | Data do Evento"
 
 #: templates/uibranding.html.twig
 msgid "Select the target date for countdown"
-msgstr ""
+msgstr "Selecione a data alvo para a contagem regressiva"
 
 #: templates/uibranding.html.twig
 msgid "Classic"
-msgstr ""
+msgstr "Clássico"
 
 #: templates/uibranding.html.twig
 msgid "Split Left"
-msgstr ""
+msgstr "Dividido Esquerda"
 
 #: templates/uibranding.html.twig
 msgid "Split Right"
-msgstr ""
+msgstr "Dividido Direita"
 
 #: templates/uibranding.html.twig
 msgid "Background Options"
-msgstr ""
+msgstr "Opções de Fundo"
 
 #: templates/uibranding.html.twig
 msgid "Custom Logos"
-msgstr ""
+msgstr "Logos Personalizadas"
 
 #: templates/uibranding.html.twig
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: templates/uibranding.html.twig
 msgid "Colors"
-msgstr ""
+msgstr "Cores"
 
 #: templates/uibranding.html.twig
 msgid "Interactive Panel"
-msgstr ""
-
+msgstr "Painel Interativo"

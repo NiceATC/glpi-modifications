@@ -1,0 +1,326 @@
+/*
+ * -------------------------------------------------------------------------
+ * UI Branding plugin for GLPI - Mobile Responsive Enhancements
+ * -------------------------------------------------------------------------
+ *
+ * LICENSE
+ *
+ * This file is part of UI Branding plugin for GLPI.
+ *
+ * "UI Branding plugin for GLPI" is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * "UI Branding plugin for GLPI" is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with "UI Branding plugin for GLPI". If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2025 by i-Vertix/PGUM.
+ * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @link      https://github.com/i-Vertix/glpi-modifications
+ * -------------------------------------------------------------------------
+ */
+
+/* ==== MOBILE OPTIMIZATIONS ==== */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .mod-layout-split .welcome-anonymous {
+        grid-template-columns: 1fr;
+    }
+    
+    .mod-layout-split .background-side {
+        height: 40vh;
+        grid-row: 1;
+    }
+    
+    .mod-layout-split .login-container {
+        grid-row: 2;
+        min-height: 60vh;
+    }
+    
+    .mod-layout-corner .login-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        max-width: 500px;
+        margin: 2rem auto;
+    }
+    
+    .mod-particles-bg::before {
+        animation-duration: 15s; /* Slower animation on tablets */
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+    .welcome-anonymous {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    
+    /* Force all layouts to be mobile-friendly */
+    .mod-layout-split .welcome-anonymous,
+    .mod-layout-corner .welcome-anonymous,
+    .mod-layout-fullwidth .welcome-anonymous {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mod-layout-split .background-side {
+        display: none; /* Hide split background on mobile */
+    }
+    
+    .mod-layout-split .login-container,
+    .mod-layout-corner .login-container,
+    .mod-layout-fullwidth .login-container {
+        position: relative;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        min-height: auto;
+    }
+    
+    /* Card adjustments for mobile */
+    .card {
+        margin: 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Form elements mobile optimization */
+    .mod-modern-inputs .form-control {
+        padding: 1rem !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+        border-radius: 10px !important;
+    }
+    
+    .mod-modern-buttons .btn {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        width: 100%;
+        border-radius: 10px !important;
+    }
+    
+    /* Logo sizing for mobile */
+    .mod-logo-enhanced {
+        max-width: 200px;
+        height: auto;
+    }
+    
+    /* Theme adjustments for mobile */
+    .mod-theme-glass .card,
+    .mod-theme-gradient .card {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    .mod-theme-dark .card {
+        background: rgba(17, 24, 39, 0.98) !important;
+    }
+    
+    .mod-theme-neon .card {
+        background: rgba(0, 0, 0, 0.95) !important;
+        border-width: 1px !important;
+    }
+    
+    /* Disable particles on mobile for performance */
+    .mod-particles-bg::before {
+        display: none;
+    }
+    
+    /* Reduce blur intensity on mobile */
+    :root {
+        --mod-blur-intensity: 8px;
+        --mod-border-radius: 10px;
+    }
+    
+    /* Text sizing improvements */
+    .card-header h3,
+    .card-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .form-label,
+    .col-form-label {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Touch-friendly spacing */
+    .form-group,
+    .mb-3 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Floating labels mobile adjustments */
+    .mod-floating-labels .form-floating > label {
+        font-size: 0.9rem !important;
+        padding: 0 0.75rem !important;
+    }
+    
+    .mod-floating-labels .form-floating > .form-control:focus ~ label,
+    .mod-floating-labels .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        font-size: 0.8rem !important;
+        transform: scale(0.9) translateY(-0.75rem) translateX(0.1rem) !important;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+    .welcome-anonymous {
+        padding: 0.5rem;
+    }
+    
+    .card {
+        border-radius: 8px !important;
+        margin: 0.5rem 0 !important;
+    }
+    
+    .mod-modern-inputs .form-control {
+        padding: 0.875rem !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+    }
+    
+    .mod-modern-buttons .btn {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.95rem !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Further reduce effects for very small screens */
+    :root {
+        --mod-blur-intensity: 5px;
+        --mod-border-radius: 8px;
+        --mod-animation-speed: 0.2s;
+    }
+    
+    /* Ensure readable text sizes */
+    .card-header h3,
+    .card-title {
+        font-size: 1.25rem !important;
+    }
+    
+    .form-label,
+    .col-form-label {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Logo sizing for very small screens */
+    .mod-logo-enhanced {
+        max-width: 150px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .welcome-anonymous {
+        padding: 1rem;
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .card {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .mod-layout-centered .login-container {
+        transform: none;
+        margin: 1rem auto;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .mod-logo-enhanced {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .mod-theme-default .card {
+        background: rgba(17, 24, 39, 0.95) !important;
+        color: white !important;
+    }
+    
+    .mod-theme-default .form-control {
+        background: rgba(55, 65, 81, 0.8) !important;
+        color: white !important;
+        border-color: rgba(107, 114, 128, 0.3) !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .welcome-anonymous,
+    .welcome-anonymous * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .mod-particles-bg::before,
+    .welcome-anonymous::before {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* Focus improvements for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    .form-control:focus {
+        animation: mod-focus-pulse 2s infinite;
+    }
+    
+    @keyframes mod-focus-pulse {
+        0%, 100% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+        50% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.15); }
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .mod-modern-buttons .btn:hover {
+        transform: none; /* Disable hover transforms on touch devices */
+    }
+    
+    .mod-logo-enhanced:hover {
+        transform: none;
+    }
+    
+    /* Larger touch targets */
+    .form-control,
+    .btn {
+        min-height: 44px; /* Apple's recommended minimum touch target */
+    }
+    
+    /* Better visual feedback for touches */
+    .btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s;
+    }
+    
+    .form-control:focus {
+        transform: scale(1.01);
+    }
+}

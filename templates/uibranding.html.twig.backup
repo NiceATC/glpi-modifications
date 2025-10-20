@@ -1,0 +1,296 @@
+{#
+# -------------------------------------------------------------------------
+# UI Branding plugin for GLPI
+# -------------------------------------------------------------------------
+#
+# LICENSE
+#
+# This file is part of UI Branding plugin for GLPI.
+#
+# "UI Branding plugin for GLPI" is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# "UI Branding plugin for GLPI" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with "UI Branding plugin for GLPI". If not, see <http://www.gnu.org/licenses/>.
+# -------------------------------------------------------------------------
+# @copyright Copyright (C) 2025 by i-Vertix/PGUM.
+# @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+# @link      https://github.com/i-Vertix/glpi-modifications
+# -------------------------------------------------------------------------
+#}
+
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+<div class="d-flex flex-column">
+    <div class="row">
+        <div class="col">
+            <div class='p-2 flex-grow-1 card'>
+                <div class="asset">
+                    <form id="main-form" name="uibranding_form" method="post" action="{{ url }}"
+                          enctype="multipart/form-data"
+                          data-submit-once>
+                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}"/>
+                        
+                        {{ fields.largeTitle(__('UI Branding', 'mod'), 'ti ti-paint', true) }}
+                        <div class="card-body d-flex flex-wrap">
+                            <div class="col-12 col-xxl-12 flex-column">
+                                <div class="d-flex flex-row flex-wrap flex-xl-nowrap">
+                                    <div class="row flex-row align-items-start flex-grow-1">
+                                        <div class="row flex-row">
+                                            {{ fields.smallTitle('Basic Settings', 'ti ti-adjustments') }}
+                                            {{ fields.textField('title', title, 'Page Title') }}
+                                            
+                                            {# Attribution Field #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Attribution Text
+                                                    <small class="form-text text-muted d-block">Text shown at bottom of login page</small>
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="text" class="form-control" name="attribution_text" 
+                                                           value="{{ attribution_text }}" 
+                                                           placeholder="Powered by Your Company">
+                                                </div>
+                                            </div>
+                                            
+                                            {{ fields.dropdownYesNo('show_background', show_background, 'Show login background') }}
+                                            {{ fields.dropdownYesNo('show_custom_logos', show_custom_logos, 'Show custom logos') }}
+                                            {{ fields.dropdownYesNo('show_custom_favicon', show_custom_favicon, 'Show custom favicon') }}
+                                            
+                                            {{ fields.smallTitle('Modern UI Settings', 'ti ti-palette') }}
+                                            
+                                            {# Theme Selection #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Login Theme
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <select class="form-control" name="theme" id="theme_select">
+                                                        {% for key, label in available_themes %}
+                                                            <option value="{{ key }}" {% if theme == key %}selected{% endif %}>{{ label }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            {# Layout Selection #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Layout Style
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <select class="form-control" name="layout" id="layout_select">
+                                                        {% for key, label in available_layouts %}
+                                                            <option value="{{ key }}" {% if layout == key %}selected{% endif %}>{{ label }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            {# Animation Selection #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Animation Style
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <select class="form-control" name="animation" id="animation_select">
+                                                        {% for key, label in available_animations %}
+                                                            <option value="{{ key }}" {% if animation == key %}selected{% endif %}>{{ label }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            {{ fields.smallTitle('Enhanced Features', 'ti ti-sparkles') }}
+                                            {{ fields.dropdownYesNo('enable_modern_inputs', enable_modern_inputs, 'Modern Input Fields') }}
+                                            {{ fields.dropdownYesNo('enable_floating_labels', enable_floating_labels, 'Floating Labels') }}
+                                            {{ fields.dropdownYesNo('enable_modern_buttons', enable_modern_buttons, 'Modern Buttons') }}
+                                            {{ fields.dropdownYesNo('enable_logo_effects', enable_logo_effects, 'Logo Effects') }}
+                                            {{ fields.dropdownYesNo('enable_particles', enable_particles, 'Particle Background') }}
+                                            
+                                            {{ fields.smallTitle('Color Customization', 'ti ti-color-picker') }}
+                                            
+                                            {# Color Pickers #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Primary Color
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="color" class="form-control form-control-color" name="primary_color" value="{{ primary_color }}" id="primary_color">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Secondary Color
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="color" class="form-control form-control-color" name="secondary_color" value="{{ secondary_color }}" id="secondary_color">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Accent Color
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="color" class="form-control form-control-color" name="accent_color" value="{{ accent_color }}" id="accent_color">
+                                                </div>
+                                            </div>
+                                            
+                                            {{ fields.smallTitle('Advanced Settings', 'ti ti-settings') }}
+                                            
+                                            {# Border Radius Slider #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Border Radius (<span id="border_radius_value">{{ border_radius }}</span>px)
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="range" class="form-range" name="border_radius" min="0" max="30" value="{{ border_radius }}" id="border_radius_slider" oninput="document.getElementById('border_radius_value').textContent = this.value">
+                                                </div>
+                                            </div>
+                                            
+                                            {# Blur Intensity Slider #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Blur Intensity (<span id="blur_intensity_value">{{ blur_intensity }}</span>px)
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="range" class="form-range" name="blur_intensity" min="0" max="50" value="{{ blur_intensity }}" id="blur_intensity_slider" oninput="document.getElementById('blur_intensity_value').textContent = this.value">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            
+                                            {# Video Background URL #}
+                                            <div class="form-field row align-items-center col-12 mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end">
+                                                    Video Background URL
+                                                    <small class="form-text text-muted d-block">Optional: URL to MP4 video for background</small>
+                                                </label>
+                                                <div class="col-xxl-7 field-container">
+                                                    <input type="text" class="form-control" name="video_background_url" 
+                                                           value="{{ video_background_url }}" 
+                                                           placeholder="https://example.com/video.mp4">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            
+                                            {# Preview Section #}
+                                            <div class="form-field row col-12 mb-3">
+                                                <div class="col-12">
+                                                    <div class="alert alert-info">
+                                                        <i class="ti ti-info-circle"></i>
+                                                        Changes will be applied to the login page. You can preview the login page in a private/incognito browser window.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{ fields.smallTitle(__('Custom Images', 'mod'), 'ti ti-photo') }}
+                                            <div class="form-field row align-items-center col-12 col-sm-6  mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end "
+                                                       for="background_input">
+                                                    {{ __('Background (min. 1920x1080 - JPG)', 'mod') }}
+                                                </label>
+                                                <div class="col-xxl-7  field-container">
+                                                    <input type="file" class="form-control" name="background"
+                                                           accept="image/jpeg" id="background_input"/>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center justify-content-center col-12 col-sm-6 mb-2">
+                                                <img style='max-width: 100%; max-height: 250px; width: auto;'
+                                                     src='/plugins/mod/front/resource.send.php?resource=background'
+                                                     alt='{{ __('Background', 'mod') }}'/>
+                                            </div>
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            <div class="form-field row align-items-center col-12 col-sm-6  mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end "
+                                                       for="logo_s_input">
+                                                    {{ __('Small Logo (53x53 - PNG)', 'mod') }}
+                                                </label>
+                                                <div class="col-xxl-7  field-container">
+                                                    <input type="file" class="form-control" name="logo_s"
+                                                           accept="image/png" id="logo_s_input"/>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center justify-content-center col-12 col-sm-6 mb-2">
+                                                <img style='max-width: 100%; max-height: 250px; width: auto'
+                                                     src='/plugins/mod/front/resource.send.php?resource=logo_s'
+                                                     alt='{{ __('Small Logo', 'mod') }}'/>
+                                            </div>
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            <div class="form-field row align-items-center col-12 col-sm-6  mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end "
+                                                       for="logo_m_input">
+                                                    {{ __('Medium Logo (100x55 - PNG)', 'mod') }}
+                                                </label>
+                                                <div class="col-xxl-7  field-container">
+                                                    <input type="file" class="form-control" name="logo_m"
+                                                           accept="image/png" id="logo_m_input"/>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center justify-content-center col-12 col-sm-6 mb-2">
+                                                <img style='max-width: 100%; max-height: 250px; width: auto'
+                                                     src='/plugins/mod/front/resource.send.php?resource=logo_m'
+                                                     alt='{{ __('Medium Logo', 'mod') }}'/>
+                                            </div>
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            <div class="form-field row align-items-center col-12 col-sm-6  mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end "
+                                                       for="logo_l_input">
+                                                    {{ __('Large Logo (250x138 - PNG)', 'mod') }}
+                                                </label>
+                                                <div class="col-xxl-7  field-container">
+                                                    <input type="file" class="form-control" name="logo_l"
+                                                           accept="image/png" id="logo_l_input"/>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center justify-content-center col-12 col-sm-6 mb-2">
+                                                <img style='max-width: 100%; max-height: 250px; width: auto'
+                                                     src='/plugins/mod/front/resource.send.php?resource=logo_l'
+                                                     alt='{{ __('Large Logo', 'mod') }}'/>
+                                            </div>
+                                            <div class="row border-top mb-2 ms-2 me-2"></div>
+                                            <div class="form-field row align-items-center col-12 col-sm-6  mb-2">
+                                                <label class="col-form-label col-xxl-5 text-xxl-end "
+                                                       for="favicon_input">
+                                                    {{ __('Favicon (16x16 - ICO)', 'mod') }}
+                                                </label>
+                                                <div class="col-xxl-7  field-container">
+                                                    <input type="file" class="form-control" name="favicon"
+                                                           accept=".ico,image/x-icon" id="favicon_input"/>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center justify-content-center col-12 col-sm-6 mb-2">
+                                                <img style='max-width: 100%; max-height: 250px; width: auto'
+                                                     src='/plugins/mod/front/resource.send.php?resource=favicon'
+                                                     alt='{{ __('Favicon', 'mod') }}'/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button-separator card-body mx-n2 border-top d-flex flex-row-reverse align-items-start flex-wrap">
+                            <button class="btn btn-primary me-2" type="submit" name="update" value="1">
+                                <i class="ti ti-device-floppy"></i>
+                                <span>{{ _x('button', 'Save') }}</span>
+                            </button>
+                        </div>
+                        <div class="card-footer mx-n2 mb-n2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Include JavaScript for modern UI features #}
+<script src="{{ url('/plugins/mod/public/js/mod_admin.js') }}"></script>

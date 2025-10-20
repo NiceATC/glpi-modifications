@@ -85,6 +85,82 @@ msgstr "Favicon (16x16 - ICO)"
 msgid "Favicon"
 msgstr "Favicon"
 
+#: templates/uibranding.html.twig
+msgid "Basic Settings"
+msgstr "Basic Settings"
+
+#: templates/uibranding.html.twig
+msgid "Modern UI Settings"
+msgstr "Modern UI Settings"
+
+#: templates/uibranding.html.twig
+msgid "Login Theme"
+msgstr "Login Theme"
+
+#: templates/uibranding.html.twig
+msgid "Layout Style"
+msgstr "Layout Style"
+
+#: templates/uibranding.html.twig
+msgid "Animation Style"
+msgstr "Animation Style"
+
+#: templates/uibranding.html.twig
+msgid "Enhanced Features"
+msgstr "Enhanced Features"
+
+#: templates/uibranding.html.twig
+msgid "Modern Input Fields"
+msgstr "Modern Input Fields"
+
+#: templates/uibranding.html.twig
+msgid "Floating Labels"
+msgstr "Floating Labels"
+
+#: templates/uibranding.html.twig
+msgid "Modern Buttons"
+msgstr "Modern Buttons"
+
+#: templates/uibranding.html.twig
+msgid "Logo Effects"
+msgstr "Logo Effects"
+
+#: templates/uibranding.html.twig
+msgid "Particle Background"
+msgstr "Particle Background"
+
+#: templates/uibranding.html.twig
+msgid "Color Customization"
+msgstr "Color Customization"
+
+#: templates/uibranding.html.twig
+msgid "Primary Color"
+msgstr "Primary Color"
+
+#: templates/uibranding.html.twig
+msgid "Secondary Color"
+msgstr "Secondary Color"
+
+#: templates/uibranding.html.twig
+msgid "Accent Color"
+msgstr "Accent Color"
+
+#: templates/uibranding.html.twig
+msgid "Advanced Settings"
+msgstr "Advanced Settings"
+
+#: templates/uibranding.html.twig
+msgid "Border Radius"
+msgstr "Border Radius"
+
+#: templates/uibranding.html.twig
+msgid "Blur Intensity"
+msgstr "Blur Intensity"
+
+#: templates/uibranding.html.twig
+msgid "Changes will be applied to the login page. You can preview the login page in a private/incognito browser window."
+msgstr "Changes will be applied to the login page. You can preview the login page in a private/incognito browser window."
+
 #: front/uibranding.php:51
 msgid "Please activate the plugin"
 msgstr "Please activate the plugin"

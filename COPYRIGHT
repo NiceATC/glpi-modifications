@@ -2,16 +2,29 @@
 UI Branding plugin for GLPI
 -------------------------------------------------------------------------
 
-LICENSE
+This plugin is distributed under the GNU General Public License v3.0
 
-This file is part of UI Branding plugin for GLPI.
+Original Inspiration: GLPI Modifications by i-Vertix/PGUM
+Original Repository: https://github.com/i-Vertix/glpi-modifications
 
-"UI Branding plugin for GLPI" is free software; you can redistribute it and/or modify
+This version has been extensively modified and enhanced with:
+- Interactive panel with notifications, events, and countdown
+- Modern split-screen layouts
+- Responsive design
+- Custom escape system for multi-line content
+- Native date picker integration
+- Smooth animations and transitions
+- Auto-scrolling for long lists
+- Complete Twig integration
+
+For full credits and license information, see LICENSE.txt and README.md
+
+This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
 (at your option) any later version.
 
-"UI Branding plugin for GLPI" is distributed in the hope that it will be useful,
+This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
