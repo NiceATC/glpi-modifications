@@ -50,6 +50,7 @@ function plugin_init_mod()
             $PLUGIN_HOOKS[Hooks::ADD_CSS_ANONYMOUS_PAGE]["mod"] = [
                 "./public/css/mod_anonymous.css",
                 "./public/css/mod_split_layouts.css",
+                "./public/css/mod_layout_centered.css",
                 "./public/css/mod_responsive.css",
                 "./public/dynamic.css.php"
             ];

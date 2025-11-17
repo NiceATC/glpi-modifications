@@ -466,6 +466,7 @@ class BrandManager
      */
     public const AVAILABLE_LAYOUTS = [
         'default' => 'Default Layout',
+        'centered' => 'Centered Card (Clean)',
         'split-left' => 'Split Screen - Form on Left',
         'split-right' => 'Split Screen - Form on Right'
     ];

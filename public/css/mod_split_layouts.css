@@ -459,3 +459,61 @@ body.mod-layout-split-left .main-content-card,
 body.mod-layout-split-right .main-content-card {
     animation: fadeIn 0.5s ease-out !important;
 }
+
+/* ============================================================
+   HIDE DEFAULT GLPI ELEMENTS OUTSIDE CONTAINER
+   ============================================================ */
+
+/* Hide GLPI logo outside the main card container */
+body.mod-layout-split-left .page-anonymous > .text-center,
+body.mod-layout-split-right .page-anonymous > .text-center,
+body.mod-layout-split-left > .text-center,
+body.mod-layout-split-right > .text-center {
+    display: none !important;
+}
+
+/* Hide GLPI copyright/attribution outside container */
+body.mod-layout-split-left .page-anonymous > .row > .text-center,
+body.mod-layout-split-right .page-anonymous > .row > .text-center,
+body.mod-layout-split-left > .row > .text-center,
+body.mod-layout-split-right > .row > .text-center {
+    display: none !important;
+}
+
+/* Hide any footer copyright text */
+body.mod-layout-split-left #footer,
+body.mod-layout-split-right #footer,
+body.mod-layout-split-left footer,
+body.mod-layout-split-right footer {
+    display: none !important;
+}
+
+/* Hide GLPI logo images outside the main card */
+body.mod-layout-split-left .page-anonymous > img,
+body.mod-layout-split-right .page-anonymous > img,
+body.mod-layout-split-left .page-anonymous > .text-center img,
+body.mod-layout-split-right .page-anonymous > .text-center img {
+    display: none !important;
+}
+
+/* Hide any standalone logos */
+body.mod-layout-split-left img.glpi-logo:not(.main-content-card img),
+body.mod-layout-split-right img.glpi-logo:not(.main-content-card img) {
+    display: none !important;
+}
+
+/* Hide attribution text at bottom */
+body.mod-layout-split-left .page-anonymous > p,
+body.mod-layout-split-right .page-anonymous > p,
+body.mod-layout-split-left > p:last-child,
+body.mod-layout-split-right > p:last-child {
+    display: none !important;
+}
+
+/* Hide any copyright container */
+body.mod-layout-split-left #display_plugin_copyright,
+body.mod-layout-split-right #display_plugin_copyright,
+body.mod-layout-split-left .copyright,
+body.mod-layout-split-right .copyright {
+    display: none !important;
+}

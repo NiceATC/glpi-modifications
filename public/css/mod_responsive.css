@@ -324,3 +324,52 @@
         transform: scale(1.01);
     }
 }
+
+/* ============================================================
+   HIDE DEFAULT GLPI ELEMENTS - Mobile & All Screens
+   ============================================================ */
+
+/* Ensure GLPI default branding is hidden on all screen sizes */
+@media (max-width: 1920px) {
+    body.welcome-anonymous > .text-center:not(.card .text-center),
+    .page-anonymous > .text-center:not(.card .text-center),
+    body > .text-center:not(.card .text-center) {
+        display: none !important;
+    }
+    
+    #footer,
+    footer,
+    #display_plugin_copyright,
+    .copyright {
+        display: none !important;
+    }
+}
+
+/* Mobile specific hiding */
+@media (max-width: 768px) {
+    /* Hide any logo or text outside the main login card */
+    body.welcome-anonymous > img:not(.card img),
+    .page-anonymous > img:not(.card img),
+    body > img.glpi-logo:not(.card img) {
+        display: none !important;
+    }
+    
+    /* Hide attribution text */
+    body.welcome-anonymous > p:not(.card p),
+    .page-anonymous > p:not(.card p) {
+        display: none !important;
+    }
+}
+
+/* Tablet specific */
+@media (max-width: 1024px) {
+    /* Keep GLPI branding hidden */
+    img.glpi-logo:not(.card img):not(.main-content-card img) {
+        display: none !important;
+    }
+    
+    .page-anonymous > .branding,
+    body.welcome-anonymous > .branding {
+        display: none !important;
+    }
+}

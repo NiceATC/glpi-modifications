@@ -1,0 +1,401 @@
+/**
+ * -------------------------------------------------------------------------
+ * UI Branding plugin for GLPI - Centered Layout
+ * -------------------------------------------------------------------------
+ *
+ * LICENSE
+ *
+ * This file is part of UI Branding plugin for GLPI.
+ *
+ * "UI Branding plugin for GLPI" is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * "UI Branding plugin for GLPI" is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with "UI Branding plugin for GLPI". If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2025 by i-Vertix/PGUM.
+ * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @link      https://github.com/i-Vertix/glpi-modifications
+ * -------------------------------------------------------------------------
+ */
+
+/* ============================================================
+   CENTERED LAYOUT - Clean centered card with hidden GLPI branding
+   ============================================================ */
+
+/* Full page background */
+body.mod-layout-centered,
+body.mod-layout-centered.welcome-anonymous,
+.mod-layout-centered.welcome-anonymous {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    background: url(../background.php) no-repeat fixed center !important;
+    background-size: cover !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+/* Background overlay */
+body.mod-layout-centered .page-anonymous::before,
+body.mod-layout-centered::before {
+    content: '' !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Video background support */
+body.mod-layout-centered video.mod-background-video {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: -2 !important;
+    object-fit: cover !important;
+}
+
+/* Remove GLPI default background */
+body.mod-layout-centered .page-anonymous {
+    background: none !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    position: relative !important;
+    z-index: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Container */
+body.mod-layout-centered .container-tight {
+    max-width: 450px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Row inside container */
+body.mod-layout-centered .container-tight .row {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Column inside row */
+body.mod-layout-centered .container-tight .col,
+body.mod-layout-centered .container-tight [class*="col-"] {
+    padding: 0 !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+}
+
+/* Main card styling */
+body.mod-layout-centered .card,
+body.mod-layout-centered .main-content-card {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    overflow: hidden !important;
+    animation: mod-centered-fade-in 0.5s ease-out !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
+
+/* Card header */
+body.mod-layout-centered .card-header {
+    background: transparent !important;
+    border: none !important;
+    padding: 2rem 2rem 1rem 2rem !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Logo inside card header */
+body.mod-layout-centered .card-header .glpi-logo {
+    display: block !important;
+    margin: 0 auto 1.5rem auto !important;
+    max-width: 180px !important;
+    width: auto !important;
+    height: auto !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+    text-align: center !important;
+}
+
+body.mod-layout-centered .card-header .glpi-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Card title */
+body.mod-layout-centered .card-header h2 {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    color: var(--mod-text-color, #1f2937) !important;
+    margin: 0 !important;
+}
+
+/* Card body */
+body.mod-layout-centered .card-body {
+    padding: 1.5rem 2rem 2rem 2rem !important;
+}
+
+/* Form elements */
+body.mod-layout-centered input[type="text"],
+body.mod-layout-centered input[type="password"],
+body.mod-layout-centered input[type="email"] {
+    width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    margin-bottom: 1rem !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    background: #ffffff !important;
+}
+
+body.mod-layout-centered input:focus {
+    border-color: var(--mod-primary-color, #2563eb) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Labels */
+body.mod-layout-centered label {
+    font-weight: 500 !important;
+    color: var(--mod-text-color, #1f2937) !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+}
+
+/* Login button */
+body.mod-layout-centered button[type="submit"],
+body.mod-layout-centered input[type="submit"] {
+    width: 100% !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    background: var(--mod-primary-color, #2563eb) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+}
+
+body.mod-layout-centered button[type="submit"]:hover,
+body.mod-layout-centered input[type="submit"]:hover {
+    background: var(--mod-secondary-color, #1e40af) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3) !important;
+}
+
+body.mod-layout-centered button[type="submit"]:active,
+body.mod-layout-centered input[type="submit"]:active {
+    transform: translateY(0) !important;
+}
+
+/* Checkbox */
+body.mod-layout-centered .form-check {
+    margin: 1rem 0 !important;
+}
+
+body.mod-layout-centered .form-check-input {
+    cursor: pointer !important;
+}
+
+body.mod-layout-centered .form-check-label {
+    cursor: pointer !important;
+    font-weight: 400 !important;
+}
+
+/* Links */
+body.mod-layout-centered a {
+    color: var(--mod-primary-color, #2563eb) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+}
+
+body.mod-layout-centered a:hover {
+    color: var(--mod-secondary-color, #1e40af) !important;
+    text-decoration: underline !important;
+}
+
+/* ============================================================
+   HIDE GLPI DEFAULT ELEMENTS OUTSIDE CARD
+   ============================================================ */
+
+/* Hide ALL elements outside the main card */
+body.mod-layout-centered > .text-center:not(.card .text-center),
+body.mod-layout-centered .page-anonymous > .text-center:not(.card .text-center),
+body.mod-layout-centered .page-anonymous > .container > .text-center:not(.card .text-center) {
+    display: none !important;
+}
+
+/* Hide GLPI logo outside card */
+body.mod-layout-centered > img:not(.card img),
+body.mod-layout-centered .page-anonymous > img:not(.card img),
+body.mod-layout-centered .page-anonymous > .container > img:not(.card img),
+body.mod-layout-centered .page-anonymous > .container > .row > .col img:not(.card img),
+body.mod-layout-centered .page-anonymous .text-center img:not(.card img),
+body.mod-layout-centered .page-anonymous .glpi-logo:not(.card .glpi-logo):not(.card-header .glpi-logo),
+body.mod-layout-centered img.glpi-logo:not(.card img):not(.card-header img) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Hide copyright/attribution outside card */
+body.mod-layout-centered > .row > .text-center,
+body.mod-layout-centered .page-anonymous > .row > .text-center,
+body.mod-layout-centered > p:not(.card p),
+body.mod-layout-centered .page-anonymous > p:not(.card p) {
+    display: none !important;
+}
+
+/* Hide footer */
+body.mod-layout-centered #footer,
+body.mod-layout-centered footer {
+    display: none !important;
+}
+
+/* Hide copyright containers */
+body.mod-layout-centered #display_plugin_copyright,
+body.mod-layout-centered .copyright:not(.card .copyright) {
+    display: none !important;
+}
+
+/* Hide any branding outside card */
+body.mod-layout-centered > .branding,
+body.mod-layout-centered .page-anonymous > .branding {
+    display: none !important;
+}
+
+/* Hide text-center in card body (only show in header) */
+body.mod-layout-centered .card-body .text-center:first-of-type,
+body.mod-layout-centered .card-body .text-center,
+body.mod-layout-centered .card-body > .text-center {
+    display: none !important;
+}
+
+/* Hide ANY logo outside the card structure */
+body.mod-layout-centered .page-anonymous > div > img,
+body.mod-layout-centered .page-anonymous div:not(.card):not(.card-header):not(.card-body) img.glpi-logo {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Force hide text-center containers outside card */
+body.mod-layout-centered .page-anonymous > .container-tight > .text-center:not(.card .text-center),
+body.mod-layout-centered .container-tight > .text-center:not(.card .text-center) {
+    display: none !important;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes mod-centered-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    body.mod-layout-centered .page-anonymous {
+        padding: 1rem !important;
+    }
+    
+    body.mod-layout-centered .container-tight {
+        max-width: 100% !important;
+    }
+    
+    body.mod-layout-centered .card-header {
+        padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+    }
+    
+    body.mod-layout-centered .card-body {
+        padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+    }
+    
+    body.mod-layout-centered .card-header .glpi-logo {
+        max-width: 150px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    body.mod-layout-centered .page-anonymous {
+        padding: 0.5rem !important;
+    }
+    
+    body.mod-layout-centered .card,
+    body.mod-layout-centered .main-content-card {
+        border-radius: 15px !important;
+    }
+    
+    body.mod-layout-centered .card-header {
+        padding: 1.25rem 1.25rem 0.75rem 1.25rem !important;
+    }
+    
+    body.mod-layout-centered .card-body {
+        padding: 0.75rem 1.25rem 1.25rem 1.25rem !important;
+    }
+    
+    body.mod-layout-centered .card-header h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    body.mod-layout-centered input[type="text"],
+    body.mod-layout-centered input[type="password"],
+    body.mod-layout-centered input[type="email"] {
+        padding: 0.75rem 0.875rem !important;
+        font-size: 0.9375rem !important;
+    }
+    
+    body.mod-layout-centered button[type="submit"],
+    body.mod-layout-centered input[type="submit"] {
+        padding: 0.875rem !important;
+        font-size: 1rem !important;
+    }
+}
