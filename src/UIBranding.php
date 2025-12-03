@@ -148,6 +148,7 @@ class UIBranding
             
             // Interactive panel
             'panel_enabled' => $data['panel_enabled'] ?? '1',
+            'panel_image_url' => $data['panel_image_url'] ?? '',
             'panel_title' => $data['panel_title'] ?? 'Bem-vindo!',
             'panel_message' => $data['panel_message'] ?? '',
             'panel_show_notifications' => $data['panel_show_notifications'] ?? '1',
@@ -203,6 +204,7 @@ class UIBranding
             
             // Interactive panel settings
             "panel_enabled" => $modernSettings['panel_enabled'],
+            "panel_image_url" => $modernSettings['panel_image_url'],
             "panel_title" => $modernSettings['panel_title'],
             "panel_message" => $modernSettings['panel_message'],
             "panel_show_notifications" => $modernSettings['panel_show_notifications'],

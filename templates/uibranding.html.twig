@@ -68,6 +68,11 @@
                                             
                             {{ fields.dropdownYesNo('panel_enabled', panel_enabled, 'Enable Interactive Panel') }}
                             
+                            {{ fields.textField('panel_image_url', panel_image_url, 'Panel Background Image URL', {
+                                placeholder: 'https://example.com/image.jpg',
+                                helper: 'URL da imagem que ocupará todo o painel lateral (deixe vazio para usar avisos/countdown)'
+                            }) }}
+                            
                             {{ fields.textField('panel_title', panel_title, 'Panel Title', {
                                 placeholder: 'Bem-vindo!'
                             }) }}

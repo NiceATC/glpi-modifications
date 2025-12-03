@@ -518,6 +518,7 @@ class BrandManager
             
             // Interactive panel settings
             'panel_enabled' => $settings['panel_enabled'] ?? '1',
+            'panel_image_url' => $settings['panel_image_url'] ?? '',
             'panel_title' => $settings['panel_title'] ?? 'Bem-vindo!',
             'panel_message' => $settings['panel_message'] ?? 'Configure mensagens, eventos e notificações no painel administrativo.',
             'panel_show_notifications' => $settings['panel_show_notifications'] ?? '1',
@@ -572,6 +573,7 @@ class BrandManager
             
             // Interactive panel
             'panel_enabled' => $ini['panel_enabled'] ?? '1',
+            'panel_image_url' => $ini['panel_image_url'] ?? '',
             'panel_title' => $ini['panel_title'] ?? 'Bem-vindo!',
             'panel_message' => $ini['panel_message'] ?? 'Configure mensagens, eventos e notificações no painel administrativo.',
             'panel_show_notifications' => $ini['panel_show_notifications'] ?? '1',
@@ -696,6 +698,7 @@ class BrandManager
             
             // Interactive panel defaults
             'panel_enabled' => '1',
+            'panel_image_url' => '',
             'panel_title' => 'Bem-vindo!',
             'panel_message' => 'Configure mensagens, eventos e notificações no painel administrativo.',
             'panel_show_notifications' => '1',

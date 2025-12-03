@@ -183,6 +183,7 @@ function plugin_mod_display_login()
                     // Add interactive panel content
                     var decorativePanel = document.querySelector('.col-auto');
                     var panelEnabled = " . json_encode($modernSettings['panel_enabled'] ?? '1') . ";
+                    var panelImageUrl = " . json_encode($modernSettings['panel_image_url'] ?? '') . ";
                     var panelTitle = " . json_encode($modernSettings['panel_title'] ?? 'Bem-vindo!') . ";
                     var panelMessage = " . json_encode($modernSettings['panel_message'] ?? 'Configure mensagens, eventos e notificações no painel administrativo.') . ";
                     var showNotifications = " . json_encode($modernSettings['panel_show_notifications'] ?? '1') . ";
@@ -194,6 +195,19 @@ function plugin_mod_display_login()
                     var events = " . json_encode($modernSettings['panel_events'] ?? '') . ";
                     
                     if (decorativePanel) {
+                        // Check if custom image is configured
+                        if (panelImageUrl) {
+                            // Apply custom background image with !important
+                            decorativePanel.style.setProperty('background-image', 'url(' + panelImageUrl + ')', 'important');
+                            decorativePanel.style.setProperty('background-size', 'cover', 'important');
+                            decorativePanel.style.setProperty('background-position', 'center', 'important');
+                            decorativePanel.style.setProperty('background-repeat', 'no-repeat', 'important');
+                            decorativePanel.style.setProperty('background-color', 'transparent', 'important');
+                            decorativePanel.setAttribute('data-panel-image', 'true');
+                            // Don't show panel content when image is used
+                            return;
+                        }
+                        
                         if (panelEnabled === '1') {
                             // Add animations keyframes
                             var styleEl = document.createElement('style');

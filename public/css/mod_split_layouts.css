@@ -196,6 +196,20 @@ body.mod-layout-split-right .main-content-card .card-body .col-auto > * {
     display: none !important;
 }
 
+/* Custom background image for panel - Applied via inline style or data attribute */
+body.mod-layout-split-left .main-content-card .card-body .col-auto[data-panel-image],
+body.mod-layout-split-right .main-content-card .card-body .col-auto[data-panel-image] {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Hide decorative pattern when custom image is present */
+body.mod-layout-split-left .main-content-card .card-body .col-auto[data-panel-image]::before,
+body.mod-layout-split-right .main-content-card .card-body .col-auto[data-panel-image]::before {
+    display: none !important;
+}
+
 /* Add decorative pattern */
 body.mod-layout-split-left .main-content-card .card-body .col-auto::before,
 body.mod-layout-split-right .main-content-card .card-body .col-auto::before {
